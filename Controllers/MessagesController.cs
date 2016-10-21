@@ -4,16 +4,15 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.Http.Description;
 using Autofac;
+using HotelBot.Translator;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Internals;
 using Microsoft.Bot.Connector;
-using Newtonsoft.Json;
 
-namespace HotelBot
+namespace HotelBot.Controllers
 {
-    [BotAuthentication]
+    //[BotAuthentication]
     public class MessagesController : ApiController
     {
         /// <summary>
@@ -24,11 +23,14 @@ namespace HotelBot
         {
             if (activity.Type == ActivityTypes.Message)
             {
+                //translate to English
+                activity.Text = TranslationHandler.DetectAndTranslate(activity.Text);
+
                 await Conversation.SendAsync(activity, MakeRoot);
             }
             else
             {
-                HandleSystemMessage(activity);
+                await HandleSystemMessage(activity);
             }
             var response = Request.CreateResponse(HttpStatusCode.OK);
             return response;
