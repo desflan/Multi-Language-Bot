@@ -18,7 +18,8 @@ namespace HotelBot.Translator
         {
             _tokenUri = Settings.GetTokenUri();
             _request =
-                $"grant_type=client_credentials&client_id={HttpUtility.UrlEncode(Settings.GetTranslatorClientId())}&client_secret={HttpUtility.UrlEncode(Settings.GetTranslatorClientSecret())} &scope=http://api.microsofttranslator.com";
+               $"grant_type=client_credentials&client_id={HttpUtility.UrlEncode(Settings.GetTranslatorClientId())}&client_secret={HttpUtility.UrlEncode(Settings.GetTranslatorClientSecret())} &scope=http://api.microsofttranslator.com";
+            
         }
 
         public async Task<AdmAccessToken> GetAccessToken()

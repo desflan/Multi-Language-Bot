@@ -24,13 +24,13 @@ namespace HotelBot.Controllers
             if (activity.Type == ActivityTypes.Message)
             {
                 //translate to English
-                activity.Text = TranslationHandler.DetectAndTranslate(activity.Text);
+                activity.Text = TranslationHandler.DetectAndTranslate(activity);
 
                 await Conversation.SendAsync(activity, MakeRoot);
             }
             else
             {
-                await HandleSystemMessage(activity);
+                HandleSystemMessage(activity);
             }
             var response = Request.CreateResponse(HttpStatusCode.OK);
             return response;

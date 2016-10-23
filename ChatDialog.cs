@@ -13,9 +13,9 @@ namespace HotelBot
         [LuisIntent("")]
         public async Task None(IDialogContext context, LuisResult result)
         {
-            var defaultResponse = ChatResponse.Default;
+            var response = ChatResponse.Default;
 
-            await context.PostAsync(defaultResponse);
+            await context.PostAsync(response.ToUserLocale(context));
 
             context.Wait(MessageReceived);
         }
@@ -23,9 +23,9 @@ namespace HotelBot
         [LuisIntent("Greeting")]
         public async Task Greeting(IDialogContext context, LuisResult result)
         {
-            var defaultResponse = ChatResponse.Greeting;
+            var response = ChatResponse.Greeting;
 
-            await context.PostAsync(defaultResponse);
+            await context.PostAsync(response.ToUserLocale(context));
 
             context.Wait(MessageReceived);
         }
@@ -33,9 +33,9 @@ namespace HotelBot
         [LuisIntent("Farewell")]
         public async Task Farewell(IDialogContext context, LuisResult result)
         {
-            var defaultResponse = ChatResponse.Farewell;
+            var response = ChatResponse.Farewell;
 
-            await context.PostAsync(defaultResponse);
+            await context.PostAsync(response.ToUserLocale(context));
 
             context.Wait(MessageReceived);
         }
@@ -43,9 +43,9 @@ namespace HotelBot
         [LuisIntent("SwimmingPool")]
         public async Task SwimmingPool(IDialogContext context, LuisResult result)
         {
-            var defaultResponse = ChatResponse.SwimmingPool;
+            var response = ChatResponse.SwimmingPool;
 
-            await context.PostAsync(defaultResponse);
+            await context.PostAsync(response.ToUserLocale(context));
 
             context.Wait(MessageReceived);
         }
@@ -53,9 +53,9 @@ namespace HotelBot
         [LuisIntent("Location")]
         public async Task Location(IDialogContext context, LuisResult result)
         {
-            var defaultResponse = ChatResponse.Location;
+            var response = ChatResponse.Location;
 
-            await context.PostAsync(defaultResponse);
+            await context.PostAsync(response.ToUserLocale(context));
 
             context.Wait(MessageReceived);
         }
@@ -63,9 +63,9 @@ namespace HotelBot
         [LuisIntent("Restaurant")]
         public async Task Restaurant(IDialogContext context, LuisResult result)
         {
-            var defaultResponse = ChatResponse.Restaurant;
+            var response = ChatResponse.Restaurant;
 
-            await context.PostAsync(defaultResponse);
+            await context.PostAsync(response.ToUserLocale(context));
 
             context.Wait(MessageReceived);
         }

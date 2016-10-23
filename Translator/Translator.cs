@@ -18,21 +18,22 @@ namespace HotelBot.Translator
 
         internal Translator()
         {
-            if (GlobalVars.Bearer == null)
-            {
-                Bearer = Task.Run(GetBearerTokenForTranslator).Result;
-            }
-            else
-            {
-                if (GlobalVars.Bearer.IsExpired)
-                {
-                    Bearer = Task.Run(GetBearerTokenForTranslator).Result;
-                }
-                else
-                {
-                    Bearer = GlobalVars.Bearer;
-                }
-            }
+            Bearer = Task.Run(GetBearerTokenForTranslator).Result;
+            //if (GlobalVars.Bearer == null)
+            //{
+            //    Bearer = Task.Run(GetBearerTokenForTranslator).Result;
+            //}
+            //else
+            //{
+            //    if (GlobalVars.Bearer.IsExpired)
+            //    {
+            //        Bearer = Task.Run(GetBearerTokenForTranslator).Result;
+            //    }
+            //    else
+            //    {
+            //        Bearer = GlobalVars.Bearer;
+            //    }
+            //}
         }
 
         public string Translate(string inputText, string inputLocale, string outputLocale)
@@ -92,10 +93,18 @@ namespace HotelBot.Translator
 
         internal async Task<AdmAccessToken> GetBearerTokenForTranslator()
         {
-            var azureDataMarket = new AzureDataMarket();
-            var token = await azureDataMarket.GetAccessToken();
-            GlobalVars.Bearer = token;
-            return token;
+            try
+            {
+                var azureDataMarket = new AzureDataMarket();
+                var token = await azureDataMarket.GetAccessToken();
+                GlobalVars.Bearer = token;
+                return token;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
         }
     }
 }

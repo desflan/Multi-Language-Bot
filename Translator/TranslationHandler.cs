@@ -17,22 +17,22 @@ namespace HotelBot.Translator
             return translator.Detect(input);
         }
 
-        public static string DetectAndTranslate(string input)
+        public static string DetectAndTranslate(Activity activity)
         {
 
                     //detect language
                     //update state for current user to detected language
-                    var inputLanguageCode = DoLanguageDetection(input);
+                    var inputLanguageCode = DoLanguageDetection(activity.Text);
                     
-                    //StateHelper.SetUserLanguageCode(activity, inputLanguageCode);
+                    StateHelper.SetUserLanguageCode(activity, inputLanguageCode);
 
                     if (inputLanguageCode.ToLower() != "en")
                     {
                         
-                        return DoTranslation(input, inputLanguageCode, "en");
+                        return DoTranslation(activity.Text, inputLanguageCode, "en");
                        
                     }
-            return input;
+            return activity.Text;
         }
     }
 }
