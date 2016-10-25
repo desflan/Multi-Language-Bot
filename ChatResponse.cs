@@ -8,7 +8,7 @@ namespace HotelBot
     public static class ChatResponse
     {
         public static readonly string Greeting = "Hi! I can answer your questions about Skyline Hotel. For reservations queries, please contact the hotel directly on + 61 2 98742001.";
-        public static readonly string SwimmingPool = "Yes we have a 25m indoor pool and a smaller outdoor pool for children.";
+        public static readonly string SwimmingPool = "Yes, we have a 25-meter indoor pool and a smaller outdoor pool for children.";
 
         public static readonly string Restaurant =
             "We have 4-star restaurant open for dinner from 5pm. Please make a reservation prior to your stay.";
