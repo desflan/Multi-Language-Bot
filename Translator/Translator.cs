@@ -18,22 +18,21 @@ namespace HotelBot.Translator
 
         internal Translator()
         {
-            Bearer = Task.Run(GetBearerTokenForTranslator).Result;
-            //if (GlobalVars.Bearer == null)
-            //{
-            //    Bearer = Task.Run(GetBearerTokenForTranslator).Result;
-            //}
-            //else
-            //{
-            //    if (GlobalVars.Bearer.IsExpired)
-            //    {
-            //        Bearer = Task.Run(GetBearerTokenForTranslator).Result;
-            //    }
-            //    else
-            //    {
-            //        Bearer = GlobalVars.Bearer;
-            //    }
-            //}
+            if (GlobalVars.Bearer == null)
+            {
+                Bearer = Task.Run(GetBearerTokenForTranslator).Result;
+            }
+            else
+            {
+                if (GlobalVars.Bearer.IsExpired)
+                {
+                    Bearer = Task.Run(GetBearerTokenForTranslator).Result;
+                }
+                else
+                {
+                    Bearer = GlobalVars.Bearer;
+                }
+            }
         }
 
         public string Translate(string inputText, string inputLocale, string outputLocale)
