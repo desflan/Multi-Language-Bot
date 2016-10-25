@@ -69,22 +69,18 @@ namespace HotelBot
 
             context.Wait(MessageReceived);
         }
+
+
+        [LuisIntent("Wifi")]
+        public async Task Wifi(IDialogContext context, LuisResult result)
+        {
+            var response = ChatResponse.Wifi;
+
+            await context.PostAsync(response.ToUserLocale(context));
+
+            context.Wait(MessageReceived);
+        }
     }
 
-
-
-
-    //private static string ToUserLocale(this string text)
-    //{
-    //    if (Settings.LanguageTranslatorSwitch().ToLower() == TranslatorSwitch.On.ToString().ToLower())
-    //    {
-    //        var userLanguageCode = StateHelper.GetUserLanguageCode(context);
-    //        if (userLanguageCode != "en")
-    //        {
-    //            text = TranslationHandler.DoTranslation(text, "en", userLanguageCode);
-    //        }
-    //    }
-
-    //    return text;
-    //}
+    
 }

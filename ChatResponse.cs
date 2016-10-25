@@ -13,6 +13,8 @@ namespace HotelBot
         public static readonly string Restaurant =
             "We have 4-star restaurant open for dinner from 5pm. Please make a reservation prior to your stay.";
 
+        public static readonly string Wifi = "Yes, we have complimentary wifi for guests in bedrooms and dining area.";
+
         public static readonly string Location =
             "We are located on George Street in the city centre, a five minute walk to the Opera House and surrounded by shops, bars, restaurants and other tourist attractions.";
 
