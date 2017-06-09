@@ -1,0 +1,204 @@
+{
+  "luis_schema_version": "2.1.0",
+  "versionId": "0.1",
+  "name": "Hotel Bot",
+  "desc": "",
+  "culture": "en-us",
+  "intents": [
+    {
+      "name": "Farewell"
+    },
+    {
+      "name": "Greeting"
+    },
+    {
+      "name": "Location"
+    },
+    {
+      "name": "None"
+    },
+    {
+      "name": "Restaurant"
+    },
+    {
+      "name": "SwimmingPool"
+    },
+    {
+      "name": "Wifi"
+    }
+  ],
+  "entities": [],
+  "composites": [],
+  "closedLists": [],
+  "bing_entities": [],
+  "actions": [],
+  "model_features": [],
+  "regex_features": [],
+  "utterances": [
+    {
+      "text": "hello",
+      "intent": "Greeting",
+      "entities": []
+    },
+    {
+      "text": "hey",
+      "intent": "Greeting",
+      "entities": []
+    },
+    {
+      "text": "hi",
+      "intent": "Greeting",
+      "entities": []
+    },
+    {
+      "text": "hi there",
+      "intent": "Greeting",
+      "entities": []
+    },
+    {
+      "text": "goodbye",
+      "intent": "Farewell",
+      "entities": []
+    },
+    {
+      "text": "bye",
+      "intent": "Farewell",
+      "entities": []
+    },
+    {
+      "text": "see you later",
+      "intent": "Farewell",
+      "entities": []
+    },
+    {
+      "text": "cheers bye",
+      "intent": "Farewell",
+      "entities": []
+    },
+    {
+      "text": "do you have a swimming pool",
+      "intent": "SwimmingPool",
+      "entities": []
+    },
+    {
+      "text": "is there a swimming pool",
+      "intent": "SwimmingPool",
+      "entities": []
+    },
+    {
+      "text": "tell me about the swimming pool",
+      "intent": "SwimmingPool",
+      "entities": []
+    },
+    {
+      "text": "is there a pool",
+      "intent": "SwimmingPool",
+      "entities": []
+    },
+    {
+      "text": "do you have a pool",
+      "intent": "SwimmingPool",
+      "entities": []
+    },
+    {
+      "text": "do you have a restaurant?",
+      "intent": "Restaurant",
+      "entities": []
+    },
+    {
+      "text": "is there a restaurant in the hotel?",
+      "intent": "Restaurant",
+      "entities": []
+    },
+    {
+      "text": "does the hotel have a restaurant",
+      "intent": "Restaurant",
+      "entities": []
+    },
+    {
+      "text": "where is the hotel located?",
+      "intent": "Location",
+      "entities": []
+    },
+    {
+      "text": "is the hotel far from town?",
+      "intent": "Location",
+      "entities": []
+    },
+    {
+      "text": "where are you located?",
+      "intent": "Location",
+      "entities": []
+    },
+    {
+      "text": "are you located int he city?",
+      "intent": "Location",
+      "entities": []
+    },
+    {
+      "text": "are you located in the city ?",
+      "intent": "Location",
+      "entities": []
+    },
+    {
+      "text": "how far from town is the hotel?",
+      "intent": "Location",
+      "entities": []
+    },
+    {
+      "text": "is the hotel far from the city?",
+      "intent": "Location",
+      "entities": []
+    },
+    {
+      "text": "thanks goodbye",
+      "intent": "Farewell",
+      "entities": []
+    },
+    {
+      "text": "ok thanks goodbye",
+      "intent": "Farewell",
+      "entities": []
+    },
+    {
+      "text": "what about restaurants?",
+      "intent": "Restaurant",
+      "entities": []
+    },
+    {
+      "text": "thanks. what about a restaurant?",
+      "intent": "Restaurant",
+      "entities": []
+    },
+    {
+      "text": "is there wifi?",
+      "intent": "Wifi",
+      "entities": []
+    },
+    {
+      "text": "do you have wifi?",
+      "intent": "Wifi",
+      "entities": []
+    },
+    {
+      "text": "any wifi?",
+      "intent": "Wifi",
+      "entities": []
+    },
+    {
+      "text": "do you have internet?",
+      "intent": "Wifi",
+      "entities": []
+    },
+    {
+      "text": "is internet free?",
+      "intent": "Wifi",
+      "entities": []
+    },
+    {
+      "text": "do we get internet included?",
+      "intent": "Wifi",
+      "entities": []
+    }
+  ]
+}
