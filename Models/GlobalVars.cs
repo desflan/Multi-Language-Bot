@@ -4,6 +4,6 @@ namespace HotelBot.Models
 {
     public static class GlobalVars
     {
-        public static AdmAccessToken Bearer { get; set; }
+        public static string Bearer { get; set; }
     }
 }

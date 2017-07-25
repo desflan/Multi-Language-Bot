@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using HotelBot.Translator;
-using HotelBot.Utilities;
+﻿using HotelBot.Translator;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 
-namespace HotelBot
+namespace HotelBot.Utilities
 {
     public static class StringExtensions
     {

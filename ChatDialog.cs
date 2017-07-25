@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using HotelBot.Utilities;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Luis;
 using Microsoft.Bot.Builder.Luis.Models;

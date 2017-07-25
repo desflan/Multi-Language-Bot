@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,31 +7,16 @@ using System.Web;
 using System.Xml;
 using HotelBot.Models;
 using HotelBot.Utilities;
-using Microsoft.Bot.Connector;
 
 namespace HotelBot.Translator
 {
     public class Translator
     {
-        internal AdmAccessToken Bearer;
+        internal string Bearer;
 
         internal Translator()
         {
-            if (GlobalVars.Bearer == null)
-            {
-                Bearer = Task.Run(GetBearerTokenForTranslator).Result;
-            }
-            else
-            {
-                if (GlobalVars.Bearer.IsExpired)
-                {
-                    Bearer = Task.Run(GetBearerTokenForTranslator).Result;
-                }
-                else
-                {
-                    Bearer = GlobalVars.Bearer;
-                }
-            }
+            Bearer = Task.Run(GetBearerTokenForTranslator).Result;
         }
 
         public string Translate(string inputText, string inputLocale, string outputLocale)
@@ -43,7 +27,7 @@ namespace HotelBot.Translator
                     $"{Settings.GetTranslatorUri()}Translate?text={HttpUtility.UrlEncode(inputText)}&from={inputLocale}&to={outputLocale}";
 
                 WebRequest translationWebRequest = WebRequest.Create(uri);
-                translationWebRequest.Headers.Add("Authorization", Bearer.Header);
+                translationWebRequest.Headers.Add("Authorization", Bearer);
 
                 WebResponse response = null;
                 response = translationWebRequest.GetResponse();
@@ -69,7 +53,7 @@ namespace HotelBot.Translator
             {
                 string uri = $"{Settings.GetTranslatorUri()}Detect?text=" + HttpUtility.UrlEncode(input);
                 WebRequest translationWebRequest = WebRequest.Create(uri);
-                translationWebRequest.Headers.Add("Authorization", Bearer.Header);
+                translationWebRequest.Headers.Add("Authorization", Bearer);
 
                 WebResponse response = null;
                 response = translationWebRequest.GetResponse();
@@ -90,19 +74,15 @@ namespace HotelBot.Translator
             
         }
 
-        internal async Task<AdmAccessToken> GetBearerTokenForTranslator()
+        internal async Task<string> GetBearerTokenForTranslator()
         {
-            try
-            {
-                var azureDataMarket = new AzureDataMarket();
-                var token = await azureDataMarket.GetAccessToken();
-                GlobalVars.Bearer = token;
-                return token;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            var azureSubscriptionKey = Settings.GetSubscriptionKey();
+            var azureAuthToken = new AzureAuthToken(azureSubscriptionKey);
+            var token = await azureAuthToken.GetAccessTokenAsync();
+            GlobalVars.Bearer = token;
+            return GlobalVars.Bearer;
+
+
             
         }
     }

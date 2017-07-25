@@ -2,7 +2,7 @@
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 
-namespace HotelBot
+namespace HotelBot.Utilities
 {
     public static class StateHelper
     {

@@ -4,17 +4,13 @@ namespace HotelBot.Utilities
 {
     public static class Settings
     {
-        public static string GetTranslatorClientId()
+        public static string GetSubscriptionKey()
         {
-            return ConfigurationManager.AppSettings["TranslatorClientId"];
+            return ConfigurationManager.AppSettings["SubscriptionKey"];
         }
-        public static string GetTranslatorClientSecret()
+        public static string GetCognitiveServicesTokenUri()
         {
-            return ConfigurationManager.AppSettings["TranslatorClientSecret"];
-        }
-        public static string GetTokenUri()
-        {
-            return ConfigurationManager.AppSettings["TokenUri"];
+            return ConfigurationManager.AppSettings["CognitiveServicesTokenUri"];
         }
         public static string GetTranslatorUri()
         {

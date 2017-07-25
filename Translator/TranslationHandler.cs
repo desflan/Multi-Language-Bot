@@ -1,4 +1,5 @@
-﻿using Microsoft.Bot.Connector;
+﻿using HotelBot.Utilities;
+using Microsoft.Bot.Connector;
 
 namespace HotelBot.Translator
 {
