@@ -62,7 +62,7 @@ namespace HotelBot.Translator
                     response.EnsureSuccessStatusCode();
                     var token = await response.Content.ReadAsStringAsync();
                     _storedTokenTime = DateTime.Now;
-                    _storedTokenValue = "Bearer " + token;
+                    _storedTokenValue = "Bearer " + token;  //cached for 5 mins
                     return _storedTokenValue;
                 }
 
