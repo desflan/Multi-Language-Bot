@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -9,10 +10,11 @@ using HotelBot.Translator;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Internals;
 using Microsoft.Bot.Connector;
+using HotelBot.Extensions;
 
 namespace HotelBot.Controllers
 {
-    //[BotAuthentication]
+    [BotAuthentication]
     public class MessagesController : ApiController
     {
         /// <summary>
@@ -21,6 +23,7 @@ namespace HotelBot.Controllers
         /// </summary>
         public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
+            Trace.TraceInformation($"Incoming Activity is {activity.ToJson()}");
             if (activity.Type == ActivityTypes.Message)
             {
                 //translate to English

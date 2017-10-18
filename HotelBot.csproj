@@ -158,6 +158,7 @@
     <Compile Include="ChatDialog.cs" />
     <Compile Include="ChatResponse.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
+    <Compile Include="Extensions\Collections.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
