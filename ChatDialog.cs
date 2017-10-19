@@ -4,6 +4,7 @@ using HotelBot.Utilities;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Luis;
 using Microsoft.Bot.Builder.Luis.Models;
+using System.Diagnostics;
 
 namespace HotelBot
 {
@@ -75,11 +76,18 @@ namespace HotelBot
         [LuisIntent("Wifi")]
         public async Task Wifi(IDialogContext context, LuisResult result)
         {
-            var response = ChatResponse.Wifi;
+            try
+            {
+                var response = ChatResponse.Wifi;
 
-            await context.PostAsync(response.ToUserLocale(context));
+               await context.PostAsync(response.ToUserLocale(context));
 
-            context.Wait(MessageReceived);
+               context.Wait(MessageReceived);  
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }           
         }
     }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 
@@ -14,8 +15,13 @@ namespace HotelBot.Utilities
                 StateClient stateClient = activity.GetStateClient();
                 BotData userData = stateClient.BotState.GetUserData(activity.ChannelId, activity.From.Id);
 
-                userData.SetProperty<string>("LanguageCode", languageCode);
-                await stateClient.BotState.SetUserDataAsync(activity.ChannelId, activity.From.Id, userData);
+                var currentLanguageCode = userData.GetProperty<string>("LanguageCode");
+                
+                if (currentLanguageCode != languageCode)
+                {
+                   userData.SetProperty<string>("LanguageCode", languageCode);
+                    await stateClient.BotState.SetUserDataAsync(activity.ChannelId, activity.From.Id, userData);
+                }
             }
             catch (Exception ex)
             {
