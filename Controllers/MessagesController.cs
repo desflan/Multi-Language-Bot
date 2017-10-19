@@ -14,7 +14,7 @@ using HotelBot.Extensions;
 
 namespace HotelBot.Controllers
 {
-    [BotAuthentication]
+  //  [BotAuthentication]
     public class MessagesController : ApiController
     {
         /// <summary>
