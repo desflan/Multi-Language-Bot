@@ -179,8 +179,8 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Properties\PublishProfiles\MultiLanguageBot - Web Deploy %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\MultiLanguageBot - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\MultiLanguageBot - Web Deploy-Debug.pubxml" />
+    <None Include="Properties\PublishProfiles\MultiLanguageBot - Web Deploy-Release.pubxml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
