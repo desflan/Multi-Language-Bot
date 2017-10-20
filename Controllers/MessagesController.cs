@@ -14,7 +14,7 @@ using HotelBot.Extensions;
 
 namespace HotelBot.Controllers
 {
-  //  [BotAuthentication]
+    //[BotAuthentication]
     public class MessagesController : ApiController
     {
         /// <summary>
@@ -26,10 +26,14 @@ namespace HotelBot.Controllers
             Trace.TraceInformation($"Incoming Activity is {activity.ToJson()}");
             if (activity.Type == ActivityTypes.Message)
             {
-                //translate to English
-                activity.Text = TranslationHandler.DetectAndTranslate(activity);
+                if (!string.IsNullOrEmpty(activity.Text))
+                {
+                    //translate to English
+                    activity.Text = TranslationHandler.DetectAndTranslate(activity);
 
-                await Conversation.SendAsync(activity, MakeRoot);
+                    await Conversation.SendAsync(activity, MakeRoot);
+                }
+                
             }
             else
             {
