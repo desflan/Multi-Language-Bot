@@ -89,6 +89,107 @@ namespace HotelBot
                 throw ex;
             }           
         }
+
+        [LuisIntent("Parking")]
+        public async Task Parking(IDialogContext context, LuisResult result)
+        {
+            try
+            {
+                var response = ChatResponse.Parking;
+
+                await context.PostAsync(response.ToUserLocale(context));
+
+                context.Wait(MessageReceived);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [LuisIntent("Transfer")]
+        public async Task Transfer(IDialogContext context, LuisResult result)
+        {
+            try
+            {
+                var response = ChatResponse.Transfer;
+
+                await context.PostAsync(response.ToUserLocale(context));
+
+                context.Wait(MessageReceived);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [LuisIntent("ChangeReservation")]
+        public async Task ChangeReservation(IDialogContext context, LuisResult result)
+        {
+            try
+            {
+                var response = ChatResponse.ChangeReservation;
+
+                await context.PostAsync(response.ToUserLocale(context));
+
+                context.Wait(MessageReceived);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [LuisIntent("CheckIn")]
+        public async Task Checkin(IDialogContext context, LuisResult result)
+        {
+            try
+            {
+                var response = ChatResponse.Checkin;
+
+                await context.PostAsync(response.ToUserLocale(context));
+
+                context.Wait(MessageReceived);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [LuisIntent("Checkout")]
+        public async Task Checkout(IDialogContext context, LuisResult result)
+        {
+            try
+            {
+                var response = ChatResponse.Checkout;
+
+                await context.PostAsync(response.ToUserLocale(context));
+
+                context.Wait(MessageReceived);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [LuisIntent("Thanks")]
+        public async Task Thanks(IDialogContext context, LuisResult result)
+        {
+            try
+            {
+                var response = ChatResponse.Thanks;
+
+                await context.PostAsync(response.ToUserLocale(context));
+
+                context.Wait(MessageReceived);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 
     

@@ -89,6 +89,26 @@ namespace HotelBot.Controllers
             {
                 // Handle add/remove from contact lists
                 // Activity.From + Activity.Action represent what happened
+
+                IConversationUpdateActivity conversationupdate = message;
+
+                using (var scope = DialogModule.BeginLifetimeScope(Conversation.Container, message))
+                {
+                    var client = scope.Resolve<IConnectorClient>();
+                    if (conversationupdate.MembersAdded.Any())
+                    {
+                        var reply = message.CreateReply();
+                        foreach (var newMember in conversationupdate.MembersAdded)
+                        {
+                            if (newMember.Id != message.Recipient.Id)
+                            {
+                                reply.Text = ChatResponse.Greeting;
+
+                                await client.Conversations.ReplyToActivityAsync(reply);
+                            }
+                        }
+                    }
+                }
             }
             else if (message.Type == ActivityTypes.Typing)
             {
