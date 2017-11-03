@@ -14,7 +14,7 @@ using HotelBot.Extensions;
 
 namespace HotelBot.Controllers
 {
-    //[BotAuthentication]
+   //[BotAuthentication]
     public class MessagesController : ApiController
     {
         /// <summary>
@@ -23,6 +23,10 @@ namespace HotelBot.Controllers
         /// </summary>
         public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
+            //trust Webchat & SMS channel
+            MicrosoftAppCredentials.TrustServiceUrl(@"https://webchat.botframework.com", DateTime.MaxValue);
+            MicrosoftAppCredentials.TrustServiceUrl(@"https://sms.botframework.com", DateTime.MaxValue);
+
             Trace.TraceInformation($"Incoming Activity is {activity.ToJson()}");
             if (activity.Type == ActivityTypes.Message)
             {
@@ -75,7 +79,7 @@ namespace HotelBot.Controllers
                         var reply = message.CreateReply();
                         foreach (var newMember in conversationupdate.MembersAdded)
                         {
-                            if (newMember.Id != message.Recipient.Id)
+                             if (newMember.Id == message.Recipient.Id)
                             {
                                 reply.Text = ChatResponse.Greeting;
 
