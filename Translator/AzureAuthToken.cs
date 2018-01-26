@@ -10,7 +10,7 @@ namespace HotelBot.Translator
     {
         private static readonly Uri ServiceUrl = new Uri(Settings.GetCognitiveServicesTokenUri());
         
-        private const string OcpApimSubscriptionKeyHeader = "Ocp-Apim-Subscription-Key";
+        private const string OcpApimSubscriptionKeyHeader = StringConstants.OcpApimSubscriptionKeyHeader;
         
         //set cached token to timeout after 5 mins - the token will have an actual timeout of 10 mins
         private static readonly TimeSpan TokenCacheDuration = new TimeSpan(0, 5, 0);

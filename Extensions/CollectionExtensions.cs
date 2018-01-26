@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace HotelBot.Extensions
 {
-    public static class Collections
+    public static class CollectionExtensions
     {
         public static string ToJson(this object value)
         {

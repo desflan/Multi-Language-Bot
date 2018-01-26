@@ -44,7 +44,6 @@ namespace HotelBot.Translator
             {
                 throw ex;
             }
-
         }
 
         internal string Detect(string input)
@@ -68,7 +67,6 @@ namespace HotelBot.Translator
             }
             catch (Exception ex)
             {
-                
                 throw ex;
             }
             

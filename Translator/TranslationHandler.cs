@@ -5,28 +5,30 @@ namespace HotelBot.Translator
 {
     public static class TranslationHandler
     {
-        public static string DetectAndTranslate(Activity activity)
+        public static string DetectLanguage(Activity activity)
         {
-            //detect language
-            //update state for current user to detected language
-            var inputLanguageCode = DoLanguageDetection(activity.Text);
-                    
-                    StateHelper.SetUserLanguageCode(activity, inputLanguageCode);
+            return DoLanguageDetection(activity.Text);
+        }
 
-                    if (inputLanguageCode.ToLower() != "en")
-                    {
-                        
-                        return DoTranslation(activity.Text, inputLanguageCode, "en");
-                       
-                    }
+        public static string TranslateTextToDefaultLanguage(Activity activity, string inputLanguage)
+        {
+            if (inputLanguage != StringConstants.DefaultLanguage)
+            {
+                return DoTranslation(activity.Text, inputLanguage, StringConstants.DefaultLanguage);
+            }
             return activity.Text;
         }
 
-        public static string DoTranslation(string inputText, string inputLocale, string outputLocale)
+        public static string TranslateText(string inputText, string inputLocale, string outputLocale)
         {
-            var translator = new Translator();
-            var translation = translator.Translate(inputText, inputLocale, outputLocale);
-            return translation;
+                return DoTranslation(inputText, inputLocale, outputLocale);
+        }
+
+        private static string DoTranslation(string inputText, string inputLocale, string outputLocale)
+        {
+                var translator = new Translator();
+                var translation = translator.Translate(inputText, inputLocale, outputLocale);
+                return translation;
         }
 
         private static string DoLanguageDetection(string input)
