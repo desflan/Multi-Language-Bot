@@ -40,28 +40,37 @@ namespace HotelBot.Controllers
 
                     //save user's LanguageCode to Azure Table Storage
                     var message = activity as IMessageActivity;
-                    using (var scope = DialogModule.BeginLifetimeScope(Conversation.Container, message))
+
+                    try
                     {
-                        var botDataStore = scope.Resolve<IBotDataStore<BotData>>();
-                        var key = new AddressKey()
-                        {
-                            BotId = message.Recipient.Id,
-                            ChannelId = message.ChannelId,
-                            UserId = message.From.Id,
-                            ConversationId = message.Conversation.Id,
-                            ServiceUrl = message.ServiceUrl
-                        };
-                        var userData = await botDataStore.LoadAsync(key, BotStoreType.BotUserData, CancellationToken.None);
+                        using(var scope = DialogModule.BeginLifetimeScope(Conversation.Container, message))
+                    {
+                            var botDataStore = scope.Resolve<IBotDataStore<BotData>>();
+                            var key = new AddressKey()
+                            {
+                                BotId = message.Recipient.Id,
+                                ChannelId = message.ChannelId,
+                                UserId = message.From.Id,
+                                ConversationId = message.Conversation.Id,
+                                ServiceUrl = message.ServiceUrl
+                            };
 
-                        var storedLanguageCode = userData.GetProperty<string>(StringConstants.UserLanguageKey);
+                            var userData = await botDataStore.LoadAsync(key, BotStoreType.BotUserData, CancellationToken.None);
 
-                        //update user's language in Azure Table Storage
-                        if (storedLanguageCode != userLanguage)
-                        {
-                            userData.SetProperty(StringConstants.UserLanguageKey, userLanguage);
-                            await botDataStore.SaveAsync(key, BotStoreType.BotUserData, userData, CancellationToken.None);
-                            await botDataStore.FlushAsync(key, CancellationToken.None);
+                            var storedLanguageCode = userData.GetProperty<string>(StringConstants.UserLanguageKey);
+
+                            //update user's language in Azure Table Storage
+                            if (storedLanguageCode != userLanguage)
+                            {
+                                userData.SetProperty(StringConstants.UserLanguageKey, userLanguage);
+                                await botDataStore.SaveAsync(key, BotStoreType.BotUserData, userData, CancellationToken.None);
+                                await botDataStore.FlushAsync(key, CancellationToken.None);
+                            }
                         }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
                     }
 
                     //translate activity.Text to English before sending to LUIS for intent

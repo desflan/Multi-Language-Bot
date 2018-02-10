@@ -22,7 +22,7 @@ namespace HotelBot
                 builder =>
                 {
                     builder.RegisterModule(new AzureModule(Assembly.GetExecutingAssembly()));
-                    
+
                     // Using Azure Table for storage
                     var store = new TableBotDataStore(ConfigurationManager.ConnectionStrings["StorageConnectionString"].ConnectionString);
 
@@ -30,6 +30,12 @@ namespace HotelBot
                         .Keyed<IBotDataStore<BotData>>(AzureModule.Key_DataStore)
                         .AsSelf()
                         .SingleInstance();
+
+                    builder.Register(c => new CachingBotDataStore(store,
+                    CachingBotDataStoreConsistencyPolicy.ETagBasedConsistency))
+                    .As<IBotDataStore<BotData>>()
+                    .AsSelf()
+                    .InstancePerLifetimeScope();
                 });
 
             GlobalConfiguration.Configure(WebApiConfig.Register);
